@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-
-
 public class Candidatura {
 
 	private ArrayList<Candidato> candidato;
@@ -46,10 +44,9 @@ public class Candidatura {
 
 	public Candidato getVereadorMaisVotado() {
 
-		return getPrefeitoMaisVotado(); // Placeholder
+		return getPrefeitoMaisVotado();
 	}
 }
-
 
 
 

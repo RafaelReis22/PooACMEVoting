@@ -176,11 +176,16 @@ public class ACMEVoting {
 		String nomePartido = entrada.nextLine();
 		Partido partidoEncontrado = buscaPartidoPorNome(nomePartido);
 		if (partidoEncontrado != null) {
+			String resultado = "6:" + nomePartido;
+
 			for (Candidato c : candidatoList) {
 				if (c.getPartido().equals(partidoEncontrado)) {
-					System.out.println("6:" + nomePartido + "," + c.getNumero() + "," + c.getNome() + "," + c.getMunicipio() + "," + c.getVotos());
+					resultado += "," + c.getNumero() + "," + c.getNome() + "," + c.getMunicipio() + "," + c.getVotos();
+					break;
 				}
 			}
+
+			System.out.println(resultado);
 		} else {
 			System.out.println("6:Partido não encontrado.");
 		}
@@ -189,22 +194,35 @@ public class ACMEVoting {
 		if (partidoMaisCandidatos != null) {
 			System.out.println("7:" + partidoMaisCandidatos.getNumero() + "," + partidoMaisCandidatos.getNome() + "," + partidoMaisCandidatos.getCandidatos().size());
 		} else {
-			System.out.println("7:Partido com nenhum candidatos.");
+			System.out.println("7:Partido com nenhum candidato.");
 		}
 
-		Candidato vereadorMaisVotado = candidatura.getVereadorMaisVotado();
-		Candidato prefeitoMaisVotado = candidatura.getPrefeitoMaisVotado();
-		if (prefeitoMaisVotado == null && vereadorMaisVotado == null) {
+		Candidato vereadorMaisVotado = getVereadorMaisVotado();
+		Candidato prefeitoMaisVotado = getPrefeitoMaisVotado();
+
+		if (vereadorMaisVotado != null) {
+			System.out.println("8:" + vereadorMaisVotado.getNumero() + "," + vereadorMaisVotado.getNome() + "," + vereadorMaisVotado.getMunicipio() + "," + vereadorMaisVotado.getVotos());
+		}
+		if (prefeitoMaisVotado != null) {
+			System.out.println("8:" + prefeitoMaisVotado.getNumero() + "," + prefeitoMaisVotado.getNome() + "," + prefeitoMaisVotado.getMunicipio() + "," + prefeitoMaisVotado.getVotos());
+		}
+		if (vereadorMaisVotado == null && prefeitoMaisVotado == null) {
 			System.out.println("8:Candidato não encontrado.");
-		} else {
-			if (vereadorMaisVotado != null) {
-				System.out.println("8:" + vereadorMaisVotado.getNumero() + "," + vereadorMaisVotado.getNome() + "," + vereadorMaisVotado.getMunicipio() + "," + vereadorMaisVotado.getVotos());
-			}
-			if (prefeitoMaisVotado != null) {
-				System.out.println("8:" + prefeitoMaisVotado.getNumero() + "," + prefeitoMaisVotado.getNome() + "," + prefeitoMaisVotado.getMunicipio() + "," + prefeitoMaisVotado.getVotos());
-			}
 		}
 	}
+
+	private Candidato getVereadorMaisVotado() {
+		Candidato maisVotado = null;
+		int maxVotos = -1;
+		for (Candidato c : candidatoList) {
+			if (c.getNumero() < 10000 && c.getVotos() > maxVotos) {
+				maisVotado = c;
+				maxVotos = c.getVotos();
+			}
+		}
+		return maisVotado;
+	}
+
 
 	private Partido buscaPartidoComMaisCandidatos() {
 		Partido partidoMaisCandidatos = null;
@@ -224,5 +242,16 @@ public class ACMEVoting {
 		}
 		return partidoMaisCandidatos;
 	}
-}
 
+	private Candidato getPrefeitoMaisVotado() {
+		Candidato maisVotado = null;
+		int maxVotos = -1;
+		for (Candidato c : candidatoList) {
+			if (c.getNumero() >= 10000 && c.getVotos() > maxVotos) {
+				maisVotado = c;
+				maxVotos = c.getVotos();
+			}
+		}
+		return maisVotado;
+	}
+}

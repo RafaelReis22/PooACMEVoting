@@ -27,10 +27,12 @@ public class Candidato {
 	}
 
 	public int getVotos() {
+
 		return votos;
 	}
 
 	public Partido getPartido() {
+
 		return partido;
 	}
 
@@ -39,6 +41,7 @@ public class Candidato {
 	}
 
 	public String toString() {
+
 		return numero + "," + nome + "," + municipio + "," + votos;
 	}
 

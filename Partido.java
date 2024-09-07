@@ -17,10 +17,12 @@ public class Partido {
 	}
 
 	public String getNome() {
+
 		return nome;
 	}
 
 	public ArrayList<Candidato> getCandidatos() {
+
 		return candidato;
 	}
 

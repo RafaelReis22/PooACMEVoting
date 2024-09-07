@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-
-
 public class CadastroPartido {
 
 	private ArrayList<Partido> partido;
@@ -45,6 +43,3 @@ public class CadastroPartido {
 		return partido;
 	}
 }
-
-
-

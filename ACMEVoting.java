@@ -58,7 +58,7 @@ public class ACMEVoting {
 		mostrarPartidos();
 		mostrarCandidatos();
 		mostrarVotos();
-		mostrarConsultas();
+		consultarInformacoes();
 		restauraEntrada();
 		restauraSaida();
 	}
@@ -155,7 +155,7 @@ public class ACMEVoting {
 	}
 
 
-	private void mostrarConsultas() {
+	private void consultarInformacoes() {
 		int numeroPartido = Integer.parseInt(entrada.nextLine());
 		Partido partido = buscaPartidoPorNumero(numeroPartido);
 		if (partido != null) {

@@ -4,7 +4,6 @@ public class Partido {
 	private int numero;
 	private String nome;
 	private ArrayList<Candidato> candidato;
-	private int contadorCandidatos;
 
 	public Partido(int numero, String nome) {
 		this.numero = numero;
@@ -17,25 +16,18 @@ public class Partido {
 	}
 
 	public String getNome() {
-
 		return nome;
 	}
 
 	public ArrayList<Candidato> getCandidatos() {
-
 		return candidato;
-	}
-
-	public int getContadorCandidatos() {
-		return contadorCandidatos;
 	}
 
 	public void adicionaCandidato(Candidato c) {
 		candidato.add(c);
 	}
 
-
 	public String toString() {
-		return numero + "," + nome + " (Candidatos: " + contadorCandidatos + ")";
+		return numero + "," + nome + " (Candidatos: " + candidato.size() + ")";
 	}
 }

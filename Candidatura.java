@@ -29,23 +29,6 @@ public class Candidatura {
 		}
 		return null;
 	}
-
-	public Candidato getPrefeitoMaisVotado() {
-		Candidato maisVotado = null;
-		int maxVotos = 0;
-		for (Candidato c : candidato) {
-			if (c.getVotos() > maxVotos) {
-				maxVotos = c.getVotos();
-				maisVotado = c;
-			}
-		}
-		return maisVotado;
-	}
-
-	public Candidato getVereadorMaisVotado() {
-
-		return getPrefeitoMaisVotado();
-	}
 }
 
 

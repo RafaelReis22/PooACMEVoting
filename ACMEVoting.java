@@ -59,8 +59,6 @@ public class ACMEVoting {
 		mostrarCandidatos();
 		mostrarVotos();
 		consultarInformacoes();
-		mostrarPartidoComMaisVotosDeVereadores();
-		mostrarMunicipioComMaiorQuantidadeDeVotos();
 		restauraEntrada();
 		restauraSaida();
 	}
@@ -255,85 +253,5 @@ public class ACMEVoting {
 			}
 		}
 		return maisVotado;
-	}
-
-	private void mostrarPartidoComMaisVotosDeVereadores() {
-		int numeroMaximoPartidos = partidoList.size();
-		int[] votosPorPartido = new int[numeroMaximoPartidos];
-		int[] partidoNumeros = new int[numeroMaximoPartidos];
-
-		for (int i = 0; i < numeroMaximoPartidos; i++) {
-			partidoNumeros[i] = partidoList.get(i).getNumero();
-			votosPorPartido[i] = 0;
-		}
-
-		for (Candidato c : candidatoList) {
-			if (c.getNumero() < 10000) {
-				int partidoNumero = c.getPartido().getNumero();
-				for (int i = 0; i < numeroMaximoPartidos; i++) {
-					if (partidoNumeros[i] == partidoNumero) {
-						votosPorPartido[i] += c.getVotos();
-						break;
-					}
-				}
-			}
-		}
-
-		int maxVotos = 0;
-		int partidoComMaisVotos = -1;
-		for (int i = 0; i < numeroMaximoPartidos; i++) {
-			if (votosPorPartido[i] > maxVotos) {
-				maxVotos = votosPorPartido[i];
-				partidoComMaisVotos = partidoNumeros[i];
-			}
-		}
-
-		if (partidoComMaisVotos != -1) {
-			Partido partido = buscaPartidoPorNumero(partidoComMaisVotos);
-			if (partido != null) {
-				System.out.println("9:" + partido.getNumero() + "," + partido.getNome() + "," + maxVotos);
-			}
-		} else {
-			System.out.println("9:Nenhum voto encontrado.");
-		}
-	}
-	private void mostrarMunicipioComMaiorQuantidadeDeVotos() {
-		int numeroMaximoMunicipios = candidatoList.size();
-		String[] municipios = new String[numeroMaximoMunicipios];
-		int[] votosPorMunicipio = new int[numeroMaximoMunicipios];
-
-
-		int municipioCount = 0;
-		for (Candidato c : candidatoList) {
-			String municipio = c.getMunicipio();
-			boolean encontrado = false;
-			for (int i = 0; i < municipioCount; i++) {
-				if (municipios[i].equals(municipio)) {
-					votosPorMunicipio[i] += c.getVotos();
-					encontrado = true;
-					break;
-				}
-			}
-			if (!encontrado) {
-				municipios[municipioCount] = municipio;
-				votosPorMunicipio[municipioCount] = c.getVotos();
-				municipioCount++;
-			}
-		}
-
-		int maxVotos = 0;
-		String municipioComMaisVotos = null;
-		for (int i = 0; i < municipioCount; i++) {
-			if (votosPorMunicipio[i] > maxVotos) {
-				maxVotos = votosPorMunicipio[i];
-				municipioComMaisVotos = municipios[i];
-			}
-		}
-
-		if (municipioComMaisVotos != null) {
-			System.out.println("10:" + municipioComMaisVotos + "," + maxVotos);
-		} else {
-			System.out.println("10:Nenhum voto encontrado.");
-		}
 	}
 }

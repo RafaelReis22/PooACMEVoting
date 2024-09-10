@@ -9,5 +9,3 @@
 7:11,Partido Brasileiro,2
 8:11,Pedro da Silva,Porto Alegre,1
 8:11111,Paula de Souza,Porto Alegre,111
-9:11,Partido Brasileiro,1
-10:Porto Alegre,112

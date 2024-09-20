@@ -1,15 +1,15 @@
-# Estágio 1: Build
-FROM maven:3.8.4-openjdk-17-slim AS build
+# Build stage
+FROM maven:3.9-eclipse-temurin-17-alpine AS build
 WORKDIR /app
 COPY pom.xml .
+RUN mvn dependency:go-offline -B
 COPY src ./src
-RUN mvn clean package -DskipTests
+RUN mvn -B package -DskipTests
 
-# Estágio 2: Execução
-FROM openjdk:17-slim
+# Runtime stage — JRE only, no full JDK
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 COPY --from=build /app/target/poo-acme-voting-*.jar app.jar
-COPY input.txt .
-
-# Comando de execução
+USER appuser
 ENTRYPOINT ["java", "-jar", "app.jar"]

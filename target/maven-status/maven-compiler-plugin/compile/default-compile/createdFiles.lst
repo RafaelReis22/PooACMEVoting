@@ -1,0 +1,12 @@
+com/acme/voting/domain/exception/VotingException.class
+com/acme/voting/domain/model/Candidate.class
+com/acme/voting/infrastructure/repository/InMemoryPartyRepository.class
+com/acme/voting/app/VotingConsoleApp.class
+com/acme/voting/domain/exception/EntityNotFoundException.class
+com/acme/voting/domain/repository/Repository.class
+com/acme/voting/domain/model/Party.class
+com/acme/voting/infrastructure/repository/InMemoryCandidateRepository.class
+com/acme/voting/domain/exception/EntityAlreadyExistsException.class
+com/acme/voting/domain/service/VotingService.class
+com/acme/voting/domain/model/CandidateKey.class
+com/acme/voting/app/Main.class
